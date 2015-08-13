@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.PropertyModel;
@@ -26,7 +27,15 @@ public class ProgramsPage extends WebPage {
 
 			@Override
 			protected void populateItem(ListItem<Program> item) {
-				item.add(new Label("name", new PropertyModel<>(item.getModel(), "name")));
+
+				item.add(new Link<Program>("link", item.getModel()) {
+					private static final long serialVersionUID = 1L;
+
+					@Override
+					public void onClick() {
+						setResponsePage(new ProgramEditPage(getModel()));
+					}
+				}.add(new Label("name", new PropertyModel<>(item.getModel(), "name"))));
 			}
 		});
 	}
