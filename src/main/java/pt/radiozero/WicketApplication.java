@@ -1,9 +1,15 @@
 package pt.radiozero;
 
+import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 
+import com.google.inject.Binder;
+import com.google.inject.Module;
+
 import pt.radiozero.pages.ProgramsPage;
+import pt.radiozero.services.ProgramsService;
+import pt.radiozero.services.impl.ProgramsServiceImpl;
 
 /**
  * Application object for your web application.
@@ -30,6 +36,13 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
 
-		// add your configuration here
+		getComponentInstantiationListeners().add(new GuiceComponentInjector(this, new Module() {
+			
+			@Override
+			public void configure(Binder binder) {
+				binder.bind(ProgramsService.class).to(ProgramsServiceImpl.class);
+				
+			}
+		}));
 	}
 }

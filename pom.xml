@@ -63,7 +63,12 @@
 			<version>${wicket.version}</version>
 		</dependency>
 		-->
-
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-guice</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -109,6 +114,7 @@
 			<version>${jetty9.version}</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<resources>
